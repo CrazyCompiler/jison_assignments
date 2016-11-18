@@ -18,11 +18,21 @@
 
 /lex
 
+
+%{
+    var numberToWord = require('number-to-words');
+
+    var getWordOfNumber = function(number){
+        if( isNaN(number * ''))
+            return number;
+        return numberToWord.toWords(number);
+    }
+%}
+
 /* operator associations and precedence */
 
 %left '+' '-'
 %left '*' '/'
-%left '^'
 
 %start expressions
 
@@ -36,18 +46,14 @@ expressions
 
 e
     : e '+' e
-        { $$ = "("+$1+" + "+$3+")" }
+        {$$ = "("+getWordOfNumber($1)+" plus "+getWordOfNumber($3)+")" }
     | e '-' e
-        { $$ = "("+$1+" - "+$3+")" }
+        { $$ = "("+getWordOfNumber($1)+" minus "+getWordOfNumber($3)+")" }
     | e '*' e
-        { $$ = "("+$1+" * "+$3+")" }
+        { $$ = "("+getWordOfNumber($1)+" times "+getWordOfNumber($3)+")" }
     | e '/' e
-        { $$ = "("+$1+" / "+$3+")" }
-    | e '^' e
-        { $$ = "("+$1+" ^ "+$3+")" }
-    | '(' e ')'
-        {$$ = $2;}
+        { $$ = "("+getWordOfNumber($1)+" by "+getWordOfNumber($3)+")" }
     | NUMBER
-        {$$ = Number(yytext)}
+        {$$ = yytext}
     ;
 
