@@ -17,6 +17,10 @@
 .                     return 'INVALID'
 
 /lex
+%{
+    var Tree = require('./treeGenerator.js');
+    
+%}
 
 /* operator associations and precedence */
 
@@ -30,21 +34,21 @@
 
 expressions
     : e EOF
-        { typeof console !== 'undefined' ? console.log($1) : print($1);
+        { typeof console !== 'undefined' ? console.log($1.toString()) : print($1);
           return $1; }
     ;
 
 e
     : e '+' e
-        { $$ = "("+$1+" + "+$3+")" }
+        { $$ = new Tree('+' , $1, $3);}
     | e '-' e
-        { $$ = "("+$1+" - "+$3+")" }
+        { $$ = new Tree('-' , $1, $3);}
     | e '*' e
-        { $$ = "("+$1+" * "+$3+")" }
+        { $$ = new Tree('*' , $1, $3);}
     | e '/' e
-        { $$ = "("+$1+" / "+$3+")" }
+        { $$ = new Tree('/' , $1, $3);}
     | e '^' e
-        { $$ = "("+$1+" ^ "+$3+")" }
+        { $$ = new Tree('^' , $1, $3);}
     | '(' e ')'
         {$$ = $2;}
     | NUMBER

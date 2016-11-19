@@ -46,13 +46,13 @@ expressions
 
 e
     : e '+' e
-        {$$ = "("+getWordOfNumber($1)+" plus "+getWordOfNumber($3)+")" }
+        {$$ = [getWordOfNumber($1), " plus ", getWordOfNumber($3)] }
     | e '-' e
-        { $$ = "("+getWordOfNumber($1)+" minus "+getWordOfNumber($3)+")" }
+        { $$ = [getWordOfNumber($1), " minus ", getWordOfNumber($3)] }
     | e '*' e
-        { $$ = "("+getWordOfNumber($1)+" times "+getWordOfNumber($3)+")" }
+        { $$ = [getWordOfNumber($1)," times ", getWordOfNumber($3)] }
     | e '/' e
-        { $$ = "("+getWordOfNumber($1)+" by "+getWordOfNumber($3)+")" }
+        { $$ = [getWordOfNumber($1)," by ",getWordOfNumber($3)] }
     | NUMBER
         {$$ = yytext}
     ;
