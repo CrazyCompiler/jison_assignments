@@ -1,4 +1,5 @@
 var Node = require('./node.js');
+var dataTypes = require('./dataTypes.js').dataTypes;
 
 var addition = function(firstNumber, secondNumber){
     return firstNumber+secondNumber;
@@ -34,10 +35,11 @@ class Calculator{
 	this.leftChild = leftChild;
 	this.rightChild = rightChild;
     }
-
+    
     calculate(){
 	var operation = operations[this.parent.evaluate()];
-	return this.leftChild.evaluate(this.rightChild,operation);
+	var result = this.leftChild.evaluate(this.rightChild,operation);
+	return new Node(result, dataTypes.number);
     }
 }
 

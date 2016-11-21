@@ -12,7 +12,7 @@ describe('calculator', function() {
 	    
 	    var calculator = new Calculator(operationNode, firstNode, secondNode);
 	    var result = new Node(2, dataTypes.number);
-	    assert.equal(calculator.calculate(),result);
+	    assert.deepEqual(calculator.calculate(),result);
 	});
 
 	it('should calculate the addition and give result', function() {
@@ -22,7 +22,7 @@ describe('calculator', function() {
 	    
 	    var calculator = new Calculator(operationNode, firstNode, secondNode);
 	    var result = new Node(6, dataTypes.number);
-	    assert.equal(calculator.calculate(),result);
+	    assert.deepEqual(calculator.calculate(),result);
 	});
 
 	it('should calculate the multiplication and give result', function() {
@@ -32,7 +32,7 @@ describe('calculator', function() {
 	    
 	    var calculator = new Calculator(operationNode, firstNode, secondNode);
 	    var result = new Node(8, dataTypes.number);
-	    assert.equal(calculator.calculate(),result);
+	    assert.deepEqual(calculator.calculate(),result);
 
 	});
 
@@ -43,7 +43,7 @@ describe('calculator', function() {
 	    
 	    var calculator = new Calculator(operationNode, firstNode, secondNode);
 	    var result = new Node(2, dataTypes.number);
-	    assert.equal(calculator.calculate(),result);
+	    assert.deepEqual(calculator.calculate(),result);
 
 	});
 
@@ -54,7 +54,7 @@ describe('calculator', function() {
 	    
 	    var calculator = new Calculator(operationNode, firstNode, secondNode);
 	    var result = new Node(16, dataTypes.number);
-	    assert.equal(calculator.calculate(),result);
+	    assert.deepEqual(calculator.calculate(),result);
 	});
     });
     

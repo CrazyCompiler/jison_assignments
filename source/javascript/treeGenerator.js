@@ -1,3 +1,4 @@
+var Calculator = require('./calculator');
 
 class Tree{
     constructor(parent, leftChild, rightChild){
@@ -21,11 +22,17 @@ class Tree{
 	return stringRepresentation;
     }
 
+    isFinalBranch(){
+	return ((+this.leftChild) && (+this.rightChild))
+    }
+
     evaluate(){
-	if(isFinalBranch()){
-	    return calculator.calcualte(parent, leftChild, rightChild);
+	if(this.isFinalBranch()){
+	    var calculator = new Calculator(this.parent, this.leftChild, this.rightChild);
+	    return calculator.calculate();
 	}
-	return parent.evaluate();
+	
+	return this.leftChild.evaluate();
     }
 };
 

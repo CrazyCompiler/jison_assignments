@@ -16,6 +16,7 @@ class Node{
     toWords(){
 	return util.getWordRepresentation(this.value);
     }
+    
     toString(){
 	return this.value;
     }
