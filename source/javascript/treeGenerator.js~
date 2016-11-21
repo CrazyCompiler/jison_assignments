@@ -1,0 +1,30 @@
+
+
+
+class Tree{
+	constructor(parent, leftChild, rightChild){
+		this.parent = parent;
+		this.leftChild = leftChild;
+		this.rightChild = rightChild;
+	}
+
+	toString() {
+		var leftChild = this.leftChild.toString();
+		var parent = this.parent.toString();
+		var rightChild = this.rightChild.toString();
+		return  `( ${leftChild} ${parent} ${rightChild} )`;
+	}
+
+	toWords(){
+
+		var stringRepresentation = `(${getWordOfNumber(this.leftChild.toWords())} ${this.parent} ${getWordOfNumber(this.rightChild)})`;
+
+		// if(!isFinite(this.leftChild)){
+		// 	stringRepresentation = `(${getWordOfNumber(this.leftChild.toWords())} ${this.parent} ${getWordOfNumber(this.rightChild)})`;
+		// }
+		return stringRepresentation;
+	}
+};
+
+
+module.exports = Tree;
