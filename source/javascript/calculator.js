@@ -31,13 +31,13 @@ var operations = {
 
 class Calculator{
     constructor(operator, firstValue, secondValue){
-	this.operator = operator;
-	this.firstValue = firstValue;
-	this.secondValue = secondValue;
+	   this.operator = operator;
+	   this.firstValue = firstValue;
+	   this.secondValue = secondValue;
     }
     
     calculate(){
-	return operations[this.operator](this.firstValue,this.secondValue);
+	   return operations[this.operator](this.firstValue,this.secondValue);
     }
 }
 

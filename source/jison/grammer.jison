@@ -17,10 +17,12 @@
 .                     return 'INVALID'
 
 /lex
-%{		
-    var Tree = require('./treeGenerator.js');
-    var Node = require('./node.js');
-    var dataType = require('./dataTypes').dataTypes;
+%{
+	var path = require('path');
+	var Tree = require(path.resolve('./source/javascript/treeGenerator.js'));
+    	var Node = require(path.resolve('./source/javascript/node.js'));
+    	var dataType = require(path.resolve('./source/javascript/dataTypes')).dataTypes;
+    
 %}
 
 /* operator associations and precedence */
@@ -35,7 +37,7 @@
 
 expressions
     : e EOF
-        {console.log($1.toString(),'\n\n',$1.toWords(),'\n\n',$1.evaluate());  return $1; }
+        {return $1; }
     ;
 
 e
