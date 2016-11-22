@@ -46,22 +46,22 @@ describe('jison grammer', function () {
     });
 
     describe('evaluate', function () {
-        it('should return words representation of valid two number expression', function () {
+        it('should return value of evaluated two number expression', function () {
             var expression = '2+3';
-            var expected = '(two plus three)';
-            assert.equal(parser.parse(expression).toWords(), expected);
+            var expected = 5;
+            assert.equal(parser.parse(expression).evaluate(), expected);
         });
 
-        it('should return words representation of valid three number expression', function () {
+        it('should return value of evaluated three number expression', function () {
             var expression = '2+3-4';
-            var expected = '((two plus three) minus four)';
-            assert.equal(parser.parse(expression).toWords(), expected);
+            var expected = 1;
+            assert.equal(parser.parse(expression).evaluate(), expected);
         });
 
-        it('should return words representation of valid expression with different operators', function () {
+        it('should return value of evaluated expression with different operators', function () {
             var expression = '2+3-4*5';
-            var expected = '((two plus three) minus (four times five))';
-            assert.equal(parser.parse(expression).toWords(), expected);
+            var expected = -15;
+            assert.equal(parser.parse(expression).evaluate(), expected);
         });
     });
 });
