@@ -1,4 +1,4 @@
 exports.dataTypes = {
-    operator:'operator',
-    number : 'number',
+    operator: 'operator',
+    number: 'number',
 }

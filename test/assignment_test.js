@@ -1,6 +1,6 @@
 var assert = require('assert');
 var Parser = require('jison').Parser;
-var grammer = require('fs').readFileSync('./source/jison/grammer.jison', 'utf-8');
+var grammer = require('fs').readFileSync('./source/jison/assignment.jison', 'utf-8');
 
 var parser = new Parser(grammer);
 
@@ -26,6 +26,26 @@ describe('jison grammer', function () {
     });
 
     describe('toWords', function () {
+        it('should return words representation of valid two number expression', function () {
+            var expression = '2+3';
+            var expected = '(two plus three)';
+            assert.equal(parser.parse(expression).toWords(), expected);
+        });
+
+        it('should return words representation of valid three number expression', function () {
+            var expression = '2+3-4';
+            var expected = '((two plus three) minus four)';
+            assert.equal(parser.parse(expression).toWords(), expected);
+        });
+
+        it('should return words representation of valid expression with different operators', function () {
+            var expression = '2+3-4*5';
+            var expected = '((two plus three) minus (four times five))';
+            assert.equal(parser.parse(expression).toWords(), expected);
+        });
+    });
+
+    describe('evaluate', function () {
         it('should return words representation of valid two number expression', function () {
             var expression = '2+3';
             var expected = '(two plus three)';

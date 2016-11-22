@@ -1,27 +1,28 @@
 var util = require('./util.js');
 var dataTypes = require('./dataTypes.js').dataTypes;
 
-class Node{
-    constructor(value, type){
-	this.value = value;
-	this.type = type;
+class Node {
+    constructor(value, type) {
+        this.value = value;
+        this.type = type;
     }
 
-    evaluate(){
-	return this.value;
-    }
-    
-    toWords(){
-	return util.getWordRepresentation(this.value);
+    evaluate() {
+        return this.value;
     }
 
-    is(classType){
-	return Node == classType;
+    toWords() {
+        return util.getWordRepresentation(this.value);
     }
-    
-    toString(){
-	return this.value;
+
+    is(classType) {
+        return Node == classType;
     }
-};
+
+    toString() {
+        return this.value;
+    }
+}
+;
 
 module.exports = Node;
