@@ -8,14 +8,14 @@ describe('identifiers', function () {
     describe('assign', function () {
         it('should return true if value has been assigned', function () {
             var identifier = new Identifiers();
-            var node = new Node(2);
+            var node = new Node(2,dataTypes.number);
             identifier.assign('a', node);
             assert.equal(identifier.contains('a'), true);
         });
         it('should return evaluated value of tree', function () {
             var identifier = new Identifiers();
-            var node = new Node(2);
-            var operatorNode = new Node('+');
+            var node = new Node(2,dataTypes.number);
+            var operatorNode = new Node('+',dataTypes.opertaor);
             var tree = new Tree(operatorNode, node, node);
             var expected = new Node(4, dataTypes.number);
             identifier.assign('a', tree);
@@ -24,4 +24,3 @@ describe('identifiers', function () {
     });
 
 });
-
