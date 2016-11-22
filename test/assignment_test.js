@@ -1,6 +1,6 @@
 var assert = require('assert');
 var Parser = require('jison').Parser;
-var grammer = require('fs').readFileSync('./source/jison/assignment.jison', 'utf-8');
+var grammer = require('fs').readFileSync('./source/jison/grammer.jison', 'utf-8');
 
 var parser = new Parser(grammer);
 
