@@ -1,4 +1,6 @@
 var Calculator = require('./calculator');
+var Node = require('./node');
+var dataTypes = require('./dataTypes').dataTypes;
 
 class Tree{
     constructor(parent, leftChild, rightChild){
@@ -27,12 +29,13 @@ class Tree{
     }
 
     evaluate(){
-	if(this.isFinalBranch()){
-	    var calculator = new Calculator(this.parent, this.leftChild, this.rightChild);
-	    return calculator.calculate();
-	}
+	var leftChildResult = this.leftChild.evaluate();
+	var rightChildResult = this.rightChild.evaluate();
+	var operator = this.parent.evaluate();
 	
-	return this.leftChild.evaluate();
+	var calculator = new Calculator(operator, leftChildResult, rightChildResult);
+	var result = calculator.calculate();
+	return new Node(result, dataTypes.number);
     }
 };
 

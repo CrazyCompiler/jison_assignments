@@ -22,22 +22,9 @@ describe('node', function() {
     });
 
     describe('evaluate', function() {
-	it('should evaluate the operation given to it with the other node and return result', function() {
+	it('should evaluate itself and return result', function() {
 	    var firstNode = new Node(1, dataType.number);
-	    var secondNode = new Node(2, dataType.number);
-
-	    assert.equal(firstNode.evaluate(secondNode, addition),3);
+	    assert.equal(firstNode.evaluate(),1);
 	});
-    });
-
-    describe('evaluate', function() {
-	it('should return the operation value if operator is provided to it', function() {
-	    var firstNode = new Node('-', dataType.operator);
-	    var secondNode = new Node(2);
-	    
-	    assert.equal(firstNode.evaluate(secondNode, addition),'-');
-	});
-    });
-
-    
+    });    
 });

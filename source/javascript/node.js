@@ -8,8 +8,6 @@ class Node{
     }
 
     evaluate(nextNode, operation){
-	if(this.type == dataTypes.number && this.type != undefined)
-	    return operation(this.value, nextNode.value);
 	return this.value;
     }
     

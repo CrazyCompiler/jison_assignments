@@ -30,16 +30,14 @@ var operations = {
 }
 
 class Calculator{
-    constructor(parent, leftChild, rightChild){
-	this.parent = parent;
-	this.leftChild = leftChild;
-	this.rightChild = rightChild;
+    constructor(operator, firstValue, secondValue){
+	this.operator = operator;
+	this.firstValue = firstValue;
+	this.secondValue = secondValue;
     }
     
     calculate(){
-	var operation = operations[this.parent.evaluate()];
-	var result = this.leftChild.evaluate(this.rightChild,operation);
-	return new Node(result, dataTypes.number);
+	return operations[this.operator](this.firstValue,this.secondValue);
     }
 }
 

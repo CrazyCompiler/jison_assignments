@@ -37,7 +37,7 @@ describe('Tree', function() {
 
     describe('evaluate', function() {
 	it('should evaluate the childrens and give the result',function(){
-	    var operatorNode = new Node('-', dataTypes.operator);
+	    var operatorNode = new Node('+', dataTypes.operator);
 	    var firstNode = new Node(5, dataTypes.number);
 	    var secondNode = new Node(2, dataTypes.number);
 	    var firstTree = new Tree(operatorNode, firstNode, secondNode);
@@ -46,7 +46,7 @@ describe('Tree', function() {
 	    var fourthNode = new Node(10, dataTypes.number);
 	    var thirdTree = new Tree(operatorNode, secondTree, fourthNode);
 	    
-	    var expected = new Node(7, dataTypes.number);
+	    var expected = new Node(23, dataTypes.number);
 	    assert.deepEqual(thirdTree.evaluate(),expected);
 	});
     });
