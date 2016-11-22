@@ -24,7 +24,7 @@ describe('Tree', function () {
         });
     });
     describe('evaluate', function () {
-        it('should evaluate the childrens and give the result', function () {
+        it('should evaluate the children and give the result', function () {
             var operatorNode = new Node('-', dataTypes.operator);
             var firstNode = new Node(5, dataTypes.number);
             var secondNode = new Node(2, dataTypes.number);
