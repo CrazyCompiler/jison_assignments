@@ -42,15 +42,15 @@ expressions
 
 e
     : e '+' e
-        { $$ = new Tree(new Node('+', dataType.operator), $1, $3);}
+        { $$ = new Tree(new Node($2, dataType.operator), $1, $3);}
     | e '-' e
-        { $$ = new Tree(new Node('-', dataType.operator) , $1, $3);}
+        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3);}
     | e '*' e
-        { $$ = new Tree(new Node('*', dataType.operator) , $1, $3);}
+        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3);}
     | e '/' e
-        { $$ = new Tree(new Node('/', dataType.operator) , $1, $3);}
+        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3);}
     | e '^' e
-        { $$ = new Tree(new Node('^', dataType.operator), $1, $3);}
+        { $$ = new Tree(new Node($2, dataType.operator), $1, $3);}
     | '(' e ')'
         {$$ = new Node($2, dataType.number);}
     | NUMBER

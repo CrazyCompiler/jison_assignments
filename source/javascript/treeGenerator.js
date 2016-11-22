@@ -3,35 +3,31 @@ var Node = require('./node');
 var dataTypes = require('./dataTypes').dataTypes;
 
 class Tree{
-    constructor(parent, leftChild, rightChild){
-		this.parent = parent;
+    constructor(operator, leftChild, rightChild){
+		this.operator = operator;
 		this.leftChild = leftChild;
 		this.rightChild = rightChild;
     }
 
     toString() {
 		var leftChild = this.leftChild.toString();
-		var parent = this.parent.toString();
+		var operator = this.operator.toString();
 		var rightChild = this.rightChild.toString();
-		return  `(${leftChild}${parent}${rightChild})`;
+		return  `(${leftChild}${operator}${rightChild})`;
     }
 
     toWords(){
 		var leftChild = this.leftChild.toWords();
-		var parent = this.parent.toWords();
+		var operator = this.operator.toWords();
 		var rightChild = this.rightChild.toWords();
-		var stringRepresentation = `(${leftChild} ${parent} ${rightChild})`;
+		var stringRepresentation = `(${leftChild} ${operator} ${rightChild})`;
 		return stringRepresentation;
-    }
-
-    isFinalBranch(){
-		return ((+this.leftChild) && (+this.rightChild))
     }
 
     evaluate(){
 		var leftChildResult = this.leftChild.evaluate();
 		var rightChildResult = this.rightChild.evaluate();
-		var operator = this.parent.evaluate();
+		var operator = this.operator.evaluate();
 	
 		var calculator = new Calculator(operator, leftChildResult, rightChildResult);
 		var result = calculator.calculate();

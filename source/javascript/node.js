@@ -7,7 +7,7 @@ class Node{
 	   this.type = type
     }
 
-    evaluate(nextNode, operation){
+    evaluate(){
 	   return this.value;
     }
     
