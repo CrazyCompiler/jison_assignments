@@ -34,7 +34,6 @@ describe('Tree', function() {
 	    assert.deepEqual(tree.evaluate(),expected);
 	});
     });
-
     describe('evaluate', function() {
 	it('should evaluate the childrens and give the result',function(){
 	    var operatorNode = new Node('+', dataTypes.operator);
@@ -50,4 +49,14 @@ describe('Tree', function() {
 	    assert.deepEqual(thirdTree.evaluate(),expected);
 	});
     });
+     describe('is', function() {
+	 it('should return true if tree class is given', function() {
+	    var tree = new Tree();
+	    assert.equal(tree.is(Tree),true);
+	 })
+	 it('should return false if other than tree class is given', function() {
+	     var tree = new Tree();
+	     assert.equal(tree.is(Node),false);
+	}) 
+     })
 });
