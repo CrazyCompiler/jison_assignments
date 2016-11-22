@@ -4,7 +4,7 @@
 
 \s+                   /* skip whitespace */
 [0-9]+("."[0-9]+)?\b  return 'NUMBER'
-\w+		      return 'WORD'
+\w+		              return 'WORD'
 "*"                   return '*'
 "/"                   return '/'
 "-"                   return '-'
@@ -14,8 +14,8 @@
 "%"                   return '%'
 "("                   return '('
 ")"                   return ')'
-"="		      return 'ASSIGNMENT'
-";"		      return ';'
+"="		              return 'ASSIGNMENT'
+";"		              return 'SEMICOLON'
 <<EOF>>               return 'EOF'
 .                     return 'INVALID'
 
@@ -34,33 +34,53 @@
 %left '+' '-'
 %left '*' '/'
 %left '^'
+%left '=' ';'
+
 
 %start expressions
 
 %% /* language grammar */
 
 expressions
-    : e EOF
+    : statement EOF
         {return $1; }
     ;
 
-e
-    : e '+' e
+statement
+    : expression
+    | expression SEMICOLON statement
+    | assignment_expression
+    | assignment_expression expression SEMICOLON
+    ;
+
+assignment_expression
+    :WORD ASSIGNMENT expression SEMICOLON
+    |WORD ASSIGNMENT expression
+    ;
+
+expression
+    : expression '+' expression
         { $$ = new Tree(new Node($2, dataType.operator), $1, $3);}
-    | e '-' e
+
+    | expression '-' expression
         { $$ = new Tree(new Node($2, dataType.operator) , $1, $3);}
-    | e '*' e
+
+    | expression '*' expression
         { $$ = new Tree(new Node($2, dataType.operator) , $1, $3);}
-    | e '/' e
+
+    | expression '/' expression
         { $$ = new Tree(new Node($2, dataType.operator) , $1, $3);}
-    | e '^' e
+
+    | expression '^' expression
         { $$ = new Tree(new Node($2, dataType.operator), $1, $3);}
-    | '(' e ')'
+
+    | '(' expression ')'
         {$$ = new Node($2, dataType.number);}
-	
-    | WORD ASSIGNMENT e ';'
-      	{ identifiers.assign($1, $3)}
+
     | NUMBER
         {$$ = new Node(Number(yytext),dataType.number);}
+
+    | WORD
+
     ;
 
