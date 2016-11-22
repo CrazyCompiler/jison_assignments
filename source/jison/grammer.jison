@@ -4,7 +4,7 @@
 
 \s+                   /* skip whitespace */
 [0-9]+("."[0-9]+)?\b  return 'NUMBER'
-\w+		      return 'WORD'
+\w+		      					return 'WORD'
 "*"                   return '*'
 "/"                   return '/'
 "-"                   return '-'
@@ -14,8 +14,8 @@
 "%"                   return '%'
 "("                   return '('
 ")"                   return ')'
-"="		      return 'ASSIGNMENT'
-";"		      return ';'
+"="		      					return 'ASSIGNMENT'
+";"		      					return ';'
 <<EOF>>               return 'EOF'
 .                     return 'INVALID'
 
@@ -57,10 +57,9 @@ e
         { $$ = new Tree(new Node($2, dataType.operator), $1, $3);}
     | '(' e ')'
         {$$ = new Node($2, dataType.number);}
-	
+
     | WORD ASSIGNMENT e ';'
       	{ identifiers.assign($1, $3)}
     | NUMBER
         {$$ = new Node(Number(yytext),dataType.number);}
     ;
-
