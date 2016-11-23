@@ -2,7 +2,7 @@ var assert = require('assert');
 var Tree = require('../source/javascript/treeGenerator.js');
 var Node = require('../source/javascript/node.js');
 var Identifiers = require('../source/javascript/identifiers.js');
-var dataTypes = require('../source/javascript/dataTypes.js').dataTypes;
+var dataTypes = require('../source/javascript/dataTypes.js');
 
 describe('identifiers', function () {
     describe('assign', function () {

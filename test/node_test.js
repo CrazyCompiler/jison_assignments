@@ -1,6 +1,6 @@
 var Node = require('../source/javascript/node.js');
 var Tree = require('../source/javascript/treeGenerator.js');
-var dataType = require('../source/javascript/dataTypes.js').dataTypes;
+var dataType = require('../source/javascript/dataTypes.js');
 var assert = require('assert');
 
 var addition = function (firstNumber, secondNumber) {

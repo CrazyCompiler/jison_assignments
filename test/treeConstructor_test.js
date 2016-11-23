@@ -1,6 +1,6 @@
 var Tree = require('../source/javascript/treeGenerator');
 var Node = require('../source/javascript/node.js');
-var dataTypes = require('../source/javascript/dataTypes.js').dataTypes;
+var dataTypes = require('../source/javascript/dataTypes.js');
 var assert = require('assert');
 var Identifiers = require('../source/javascript/identifiers.js');
 var identifiers = new Identifiers();

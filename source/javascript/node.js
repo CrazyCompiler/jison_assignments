@@ -1,5 +1,5 @@
 var util = require('./util.js');
-var dataTypes = require('./dataTypes.js').dataTypes;
+var dataTypes = require('./dataTypes.js');
 
 class Node {
     constructor(value, type) {
@@ -22,7 +22,6 @@ class Node {
     toString() {
         return this.value;
     }
-}
-;
+};
 
 module.exports = Node;
