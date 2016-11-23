@@ -6,7 +6,7 @@ class Identifiers {
     }
 
     assign(key, value) {
-        if (value.is(Tree))
+        if (value instanceof Tree)
             this.variableTable[key] = value.evaluate();
         else
             this.variableTable[key] = value;

@@ -17,10 +17,6 @@ class Tree {
         return `(${leftChild}${operator}${rightChild})`;
     }
 
-    is(classType) {
-        return Tree == classType;
-    }
-
     toWords() {
         var leftChild = this.leftChild.toWords();
         var operator = this.operator.toWords();

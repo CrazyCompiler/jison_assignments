@@ -15,13 +15,15 @@ class Node {
         return util.getWordRepresentation(this.value);
     }
 
-    is(classType) {
-        return Node == classType;
-    }
-
     toString() {
         return this.value;
     }
 };
 
-module.exports = Node;
+module.exports = function (value, type, identifiers) {
+    if(!dataTypes.isVariable(type))
+        return new Node(value, type);
+    if(dataTypes.isVariable(type) && identifiers.contains(value))
+        return identifiers.getValueOf(value);
+    throw new Error(`${value} not defined`);
+}
