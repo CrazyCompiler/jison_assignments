@@ -3,10 +3,11 @@ var Node = require('./node');
 var dataTypes = require('./dataTypes').dataTypes;
 
 class Tree {
-    constructor(operator, leftChild, rightChild) {
+    constructor(operator, leftChild, rightChild, identifiers) {
         this.operator = operator;
         this.leftChild = leftChild;
         this.rightChild = rightChild;
+        this.identifiers = identifiers;
     }
 
     toString() {
@@ -28,10 +29,18 @@ class Tree {
         return stringRepresentation;
     }
 
+    evaluateValues(node){
+        if(this.identifiers.contains(node))
+            return this.identifiers.getValueOf(node).evaluate();
+        else if(node.evaluate)
+            return node.evaluate();
+
+    }
+
     evaluate() {
-        var leftChildResult = this.leftChild.evaluate();
-        var rightChildResult = this.rightChild.evaluate();
-        var operator = this.operator.evaluate();
+        var leftChildResult = this.evaluateValues(this.leftChild);
+        var rightChildResult = this.evaluateValues(this.rightChild);
+        var operator = this.evaluateValues(this.operator);
 
         var calculator = new Calculator(operator, leftChildResult, rightChildResult);
         var result = calculator.calculate();

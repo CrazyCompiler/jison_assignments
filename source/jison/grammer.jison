@@ -27,6 +27,7 @@
     	var dataType = require(path.resolve('./source/javascript/dataTypes')).dataTypes;
     	var Identifiers = require(path.resolve('./source/javascript/identifiers'));
 	var identifiers = new Identifiers();
+	var result;
 %}
 
 /* operator associations and precedence */
@@ -43,36 +44,45 @@
 
 expressions
     : statement EOF
-        {return $1; }
+        { return result; }
     ;
 
 statement
     : expression
+    { result = $$;}
     | expression SEMICOLON statement
+
     | assignment_expression
+
     | assignment_expression expression SEMICOLON
+    | assignment_expression statement
     ;
 
 assignment_expression
-    :WORD ASSIGNMENT expression SEMICOLON
-    |WORD ASSIGNMENT expression
+    :assignment SEMICOLON
+    |assignment
+    ;
+
+assignment
+    :WORD ASSIGNMENT expression
+    { identifiers.assign($1,$3);}
     ;
 
 expression
     : expression '+' expression
-        { $$ = new Tree(new Node($2, dataType.operator), $1, $3);}
+        {$$ = new Tree(new Node($2, dataType.operator), $1, $3, identifiers); }
 
     | expression '-' expression
-        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3);}
+        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3, identifiers); }
 
     | expression '*' expression
-        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3);}
+        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3, identifiers); }
 
     | expression '/' expression
-        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3);}
+        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3, identifiers); }
 
     | expression '^' expression
-        { $$ = new Tree(new Node($2, dataType.operator), $1, $3);}
+        { $$ = new Tree(new Node($2, dataType.operator), $1, $3, identifiers);}
 
     | '(' expression ')'
         {$$ = new Node($2, dataType.number);}
@@ -81,6 +91,5 @@ expression
         {$$ = new Node(Number(yytext),dataType.number);}
 
     | WORD
-
+        { $$ = identifiers.getValueOf($$);}
     ;
-

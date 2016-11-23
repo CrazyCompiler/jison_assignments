@@ -16,7 +16,7 @@ describe('identifiers', function () {
             var identifier = new Identifiers();
             var node = new Node(2);
             var operatorNode = new Node('+');
-            var tree = new Tree(operatorNode, node, node);
+            var tree = new Tree(operatorNode, node, node, identifier);
             var expected = new Node(4, dataTypes.number);
             identifier.assign('a', tree);
             assert.deepEqual(identifier.getValueOf('a'), expected);

@@ -2,6 +2,8 @@ var Tree = require('../source/javascript/treeGenerator');
 var Node = require('../source/javascript/node.js');
 var dataTypes = require('../source/javascript/dataTypes.js').dataTypes;
 var assert = require('assert');
+var Identifiers = require('../source/javascript/identifiers.js');
+var identifiers = new Identifiers();
 
 describe('Tree', function () {
     describe('toString', function () {
@@ -9,7 +11,7 @@ describe('Tree', function () {
             var operatorNode = new Node('-', dataTypes.operator);
             var firstNode = new Node(1, dataTypes.number);
             var secondNode = new Node(2, dataTypes.number);
-            var tree = new Tree(operatorNode, firstNode, secondNode);
+            var tree = new Tree(operatorNode, firstNode, secondNode, identifiers);
             assert.equal(tree.toString(), '(1-2)');
         });
 
@@ -19,7 +21,7 @@ describe('Tree', function () {
             var operatorNode = new Node('-', dataTypes.operator);
             var firstNode = new Node(1, dataTypes.number);
             var secondNode = new Node(2, dataTypes.number);
-            var tree = new Tree(operatorNode, firstNode, secondNode);
+            var tree = new Tree(operatorNode, firstNode, secondNode, identifiers);
             assert.equal(tree.toWords(), '(one minus two)');
         });
     });
@@ -28,7 +30,7 @@ describe('Tree', function () {
             var operatorNode = new Node('-', dataTypes.operator);
             var firstNode = new Node(5, dataTypes.number);
             var secondNode = new Node(2, dataTypes.number);
-            var tree = new Tree(operatorNode, firstNode, secondNode);
+            var tree = new Tree(operatorNode, firstNode, secondNode, identifiers);
             var expected = new Node(3, dataTypes.number);
 
             assert.deepEqual(tree.evaluate(), expected);
@@ -39,11 +41,11 @@ describe('Tree', function () {
             var operatorNode = new Node('+', dataTypes.operator);
             var firstNode = new Node(5, dataTypes.number);
             var secondNode = new Node(2, dataTypes.number);
-            var firstTree = new Tree(operatorNode, firstNode, secondNode);
+            var firstTree = new Tree(operatorNode, firstNode, secondNode, identifiers);
             var thirdNode = new Node(6, dataTypes.number);
-            var secondTree = new Tree(operatorNode, firstTree, thirdNode);
+            var secondTree = new Tree(operatorNode, firstTree, thirdNode, identifiers);
             var fourthNode = new Node(10, dataTypes.number);
-            var thirdTree = new Tree(operatorNode, secondTree, fourthNode);
+            var thirdTree = new Tree(operatorNode, secondTree, fourthNode, identifiers);
 
             var expected = new Node(23, dataTypes.number);
             assert.deepEqual(thirdTree.evaluate(), expected);
