@@ -8,7 +8,7 @@ describe('identifiers', function () {
     describe('assign', function () {
         it('should return true if value has been assigned', function () {
             var identifier = new Identifiers();
-            var node = new Node(2);
+            var node = new Node(2,dataTypes.number);
             identifier.assign('a', node);
             assert.equal(identifier.contains('a'), true);
         });
@@ -24,4 +24,3 @@ describe('identifiers', function () {
     });
 
 });
-
