@@ -44,7 +44,7 @@
 
 expressions
     : statement EOF
-        { return result; }
+        {console.log(result.evaluate()); return result; }
     ;
 
 statement
@@ -70,26 +70,26 @@ assignment
 
 expression
     : expression '+' expression
-        {$$ = new Tree(new Node($2, dataType.operator), $1, $3, identifiers); }
+        {$$ = new Tree(new Node($2, dataType.operator, identifiers), $1, $3); }
 
     | expression '-' expression
-        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3, identifiers); }
+        { $$ = new Tree(new Node($2, dataType.operator, identifiers) , $1, $3); }
 
     | expression '*' expression
-        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3, identifiers); }
+        { $$ = new Tree(new Node($2, dataType.operator, identifiers) , $1, $3); }
 
     | expression '/' expression
-        { $$ = new Tree(new Node($2, dataType.operator) , $1, $3, identifiers); }
+        { $$ = new Tree(new Node($2, dataType.operator, identifiers) , $1, $3); }
 
     | expression '^' expression
-        { $$ = new Tree(new Node($2, dataType.operator), $1, $3, identifiers);}
+        { $$ = new Tree(new Node($2, dataType.operator, identifiers), $1, $3);}
 
     | '(' expression ')'
-        {$$ = new Node($2, dataType.number);}
+        {$$ = new Node($2, dataType.number, identifiers);}
 
     | NUMBER
-        {$$ = new Node(Number(yytext),dataType.number);}
+        {$$ = new Node(Number(yytext),dataType.number, identifiers);}
 
     | WORD
-        { $$ = identifiers.getValueOf($$);}
+        {$$ = new Node($1,dataType.variable, identifiers);}
     ;
