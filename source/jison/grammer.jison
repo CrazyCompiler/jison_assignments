@@ -24,7 +24,7 @@
 	var path = require('path');
 	var Tree = require(path.resolve('./source/javascript/treeGenerator.js'));
     	var Node = require(path.resolve('./source/javascript/node.js'));
-    	var dataType = require(path.resolve('./source/javascript/dataTypes')).dataTypes;
+    	var dataType = require(path.resolve('./source/javascript/dataTypes'));
     	var Identifiers = require(path.resolve('./source/javascript/identifiers'));
 	var identifiers = new Identifiers();
 	var result;

@@ -1,5 +1,5 @@
 var Node = require('./node.js');
-var dataTypes = require('./dataTypes.js').dataTypes;
+var dataTypes = require('./dataTypes.js');
 
 var addition = function (firstNumber, secondNumber) {
     return firstNumber + secondNumber;

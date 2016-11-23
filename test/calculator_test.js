@@ -1,5 +1,5 @@
 var Calculator = require('../source/javascript/calculator.js');
-var dataTypes = require('../source/javascript/dataTypes.js').dataTypes;
+var dataTypes = require('../source/javascript/dataTypes.js');
 var Node = require('../source/javascript/node.js');
 var assert = require('assert');
 

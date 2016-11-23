@@ -1,6 +1,6 @@
 var Calculator = require('./calculator');
 var Node = require('./node');
-var dataTypes = require('./dataTypes').dataTypes;
+var dataTypes = require('./dataTypes');
 
 class Tree {
     constructor(operator, leftChild, rightChild, identifiers) {
